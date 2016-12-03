@@ -30,8 +30,19 @@ Download version 1.6.0 of the binaries
 from http://cegg.unige.ch/newick_utils
 
 --------------------------------------------------------------------------------
+INPUT
+--------------------------------------------------------------------------------
+Limitation: In the sequence headers of fasta file, there can't be spaces.
+
+1. dataset of all sequences including query sequences in fasta file
+   [allsequences].fas
+2. query sequences in fasta file
+   [querysequences].fas
+   
+--------------------------------------------------------------------------------
 EXECUTION
 --------------------------------------------------------------------------------
+
 To test the phylogeny pipeline
 
 1. Cd into the folder with the TestData.fas and TestQuery.fas
@@ -54,7 +65,7 @@ OPTION: View PASTA tree in Figtree
 --------------------------------------------------------------------------------
 OUTPUT
 --------------------------------------------------------------------------------
-1. Tree file (from PASTA) - [jobname].tre
-2. Alignment file (from PASTA) - [jobname]_temp_iteration_2_seq_alignment.txt
+1. Tree file (from PASTA) - [allsequences].tre
+2. Alignment file (from PASTA) - [allsequences]_temp_iteration_2_seq_alignment.txt
 3. Text files of pairwise distances (closest to furthest) for each query sequences.
-[jobname]phylogeny.text. Multiple query sequences will create multiple text files
+[queryID]phylogeny.text. Multiple query sequences will create multiple text files
