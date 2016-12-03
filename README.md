@@ -34,7 +34,7 @@ INPUT
 --------------------------------------------------------------------------------
 Limitation: In the sequence headers of fasta file, there can't be spaces.
 
-1. dataset of all sequences including query sequences in fasta file
+1. dataset of all sequences excluding query sequences in fasta file
 
    [allsequences].fas
 2. query sequences in fasta file
@@ -58,7 +58,7 @@ Command line:
 
 	python PhylogenyPipeline.py $arg1 $arg2
 
-	arg1: name of fastafile with all the sequences including query sequence(s)
+	arg1: name of fastafile with all the sequences excluding query sequence(s)
 	arg2: name of fastafile with only the query sequence(s)
 
 OPTION: View PASTA tree in Figtree
