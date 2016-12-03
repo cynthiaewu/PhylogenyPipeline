@@ -33,11 +33,14 @@ from http://cegg.unige.ch/newick_utils
 EXECUTION
 --------------------------------------------------------------------------------
 To test the phylogeny pipeline
-Cd into the folder with the TestData.fas and TestQuery.fas
-From command line, run this command:
+
+1. Cd into the folder with the TestData.fas and TestQuery.fas
+2. From command line, run this command:
+
 python PhylogenyPipeline.py TestData.fas TestQuery.fas
 
 To run the phylogeny pipeline in the command line: 
+
 Command line: python PhylogenyPipeline.py $arg1 $arg2
 	arg1: name of fastafile with all the sequences including query sequence(s)
 	arg2: name of fastafile with only the query sequence(s)
