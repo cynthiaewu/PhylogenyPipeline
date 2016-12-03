@@ -2,6 +2,11 @@ import sys
 import subprocess
 import operator
 
+if len(sys.argv) != 3:
+    print("ERROR: Incorrect number of arguments")
+    print("USAGE: python PhylogenyPipeline.py [allsequences].fas [querysequences].fas")
+    exit(-1)
+    
 # first command line argument: fasta file of all sequences
 fastafile = sys.argv[1]
 # second command line argument: fasta file of only query sequences
@@ -28,7 +33,7 @@ allsequences.close()
 print("Query file read")
 
 # run PASTA
-subprocess.call(["run_pasta.py", "-i", allsequences, "-j", subject])
+subprocess.call(["run_pasta.py", "-i", fastafile, "-j", subject])
 
 # run newick-utils
 f = open(distancefile, 'w')
