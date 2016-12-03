@@ -35,7 +35,7 @@ database = open(fastafile, "r")
 for line in database :
     allsequences.write(line)
 allsequences.close()
-fastafile.close()
+database.close()
 
 # run PASTA
 work = subprocess.call(subprocess.call(["run_pasta.py", "-i", allsequences, "-j", subject]))
