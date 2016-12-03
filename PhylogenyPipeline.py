@@ -12,9 +12,6 @@ fastafile = sys.argv[1]
 # second command line argument: fasta file of only query sequences
 querySequences = sys.argv[2]
 name = fastafile.rsplit(".", 1)
-if name[1].upper() != "FAS" or name[1].upper() != "FASTA":
-    print("ERROR: File isn't in corect fasta format")
-    exit(-1)
 subject = name[0]
 trefile = subject + ".tre"
 distancefile = subject + "matrix.txt"
