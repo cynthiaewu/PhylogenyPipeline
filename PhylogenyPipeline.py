@@ -2,22 +2,27 @@ import sys
 import subprocess
 import operator
 
-# first command line argument: fasta file of all sequences, including query
+# first command line argument: fasta file of all sequences
 fastafile = sys.argv[1]
-# second command line argument: text file of only query sequences
+# second command line argument: fasta file of only query sequences
 querySequences = sys.argv[2]
 name = fastafile.rsplit(".", 1)
 subject = name[0]
 trefile = subject + ".tre"
 distancefile = subject + "matrix.txt"
 
+allsequences = open(fastafile, 'a')
 queryfile = open(querySequences, 'r')
 print("Reading query file")
-#parse query text file to grab query sequences
+#parse query fasta file to grab query sequences
 query = set()
 for line in queryfile:
-    l = line.rstrip()
-    query.add(l)
+    if line.startswith(">"):
+        allsequences.write(line)
+        l = line.rstrip()
+        query.add(l[1:])
+    else:
+        allsequences.write(line)               
 queryfile.close()
 print("Query file read")
 
