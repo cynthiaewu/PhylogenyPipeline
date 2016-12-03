@@ -42,6 +42,7 @@ To run the phylogeny pipeline in the command line:
 
 Command line: 
 python PhylogenyPipeline.py $arg1 $arg2
+
 	arg1: name of fastafile with all the sequences including query sequence(s)
 	arg2: name of fastafile with only the query sequence(s)
 
