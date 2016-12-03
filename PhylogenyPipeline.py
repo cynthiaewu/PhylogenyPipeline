@@ -24,10 +24,11 @@ for line in queryfile:
     else:
         allsequences.write(line)               
 queryfile.close()
+allsequences.close()
 print("Query file read")
 
 # run PASTA
-subprocess.call(["run_pasta.py", "-i", fastafile, "-j", subject])
+subprocess.call(["run_pasta.py", "-i", allsequences, "-j", subject])
 
 # run newick-utils
 f = open(distancefile, 'w')
