@@ -35,8 +35,10 @@ INPUT
 Limitation: In the sequence headers of fasta file, there can't be spaces.
 
 1. dataset of all sequences including query sequences in fasta file
+
    [allsequences].fas
 2. query sequences in fasta file
+
    [querysequences].fas
    
 --------------------------------------------------------------------------------
