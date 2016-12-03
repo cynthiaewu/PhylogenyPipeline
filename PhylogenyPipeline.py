@@ -4,7 +4,7 @@ import operator
 
 # first command line argument: fasta file of all sequences, including query
 fastafile = sys.argv[1]
-# second command line argument: fasta file of only query sequences
+# second command line argument: text file of only query sequences
 querySequences = sys.argv[2]
 name = fastafile.rsplit(".", 1)
 subject = name[0]
@@ -13,11 +13,11 @@ distancefile = subject + "matrix.txt"
 
 queryfile = open(querySequences, 'r')
 print("Reading query file")
-#parse query fasta file to grab query sequences
+#parse query text file to grab query sequences
 query = set()
 for line in queryfile:
-    if line.startswith(">"):
-                query.add(line[1:len(line)-1])
+    l = line.rstrip()
+    query.add(l)
 queryfile.close()
 print("Query file read")
 
