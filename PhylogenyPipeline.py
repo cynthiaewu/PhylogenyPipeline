@@ -12,11 +12,14 @@ fastafile = sys.argv[1]
 # second command line argument: fasta file of only query sequences
 querySequences = sys.argv[2]
 name = fastafile.rsplit(".", 1)
+if name[1].upper() != "FAS" or name[1].upper() != "FASTA":
+    print("ERROR: File isn't in corect fasta format")
+    exit(-1)
 subject = name[0]
 trefile = subject + ".tre"
 distancefile = subject + "matrix.txt"
 
-allsequences = open(fastafile, 'a')
+allsequences = open("temp.fas", 'w')
 queryfile = open(querySequences, 'r')
 print("Reading query file")
 #parse query fasta file to grab query sequences
@@ -29,15 +32,27 @@ for line in queryfile:
     else:
         allsequences.write(line)               
 queryfile.close()
-allsequences.close()
 print("Query file read")
 
+database = open(fastafile, "r")
+for line in database :
+    allsequences.write(line)
+allsequences.close()
+fastafile.close()
+
 # run PASTA
-subprocess.call(["run_pasta.py", "-i", fastafile, "-j", subject])
+work = subprocess.call(subprocess.call(["run_pasta.py", "-i", allsequences, "-j", subject]))
+if  work != 0:
+    print("ERROR: PASTA didn't run correctly")
+    exit(-1)
+
 
 # run newick-utils
 f = open(distancefile, 'w')
-subprocess.call(["nw_distance", "-n", "-m", "m", trefile], stdout=f)
+work = subprocess.call(["nw_distance", "-n", "-m", "m", trefile], stdout=f)
+if  work != 0:
+    print("ERROR: Newick-utilities didn't run correctly")
+    exit(-1)
 print("Newick finished")
 f.close()
 
