@@ -7,7 +7,7 @@ if len(sys.argv) != 3:
     print("ERROR: Incorrect number of arguments")
     print("USAGE: python PhylogenyPipeline.py [allsequences].fas [querysequences].fas")
     exit(-1)
-    
+
 # first command line argument: fasta file of all sequences
 fastafile = sys.argv[1]
 # second command line argument: fasta file of only query sequences
@@ -18,6 +18,8 @@ subject = name[0]
 queryfilename = nameQuery[0]
 trefile = subject + ".tre"
 distancefile = subject + "matrix.txt"
+alignedfile = subject + "_temp_iteration_2_seq_alignment.txt"
+renameAlignfile = subject + "_aligned.txt"
 
 allsequences = open("temp.fas", 'w')
 queryfile = open(querySequences, 'r')
@@ -30,7 +32,7 @@ for line in queryfile:
         l = line.rstrip()
         query.add(l[1:])
     else:
-        allsequences.write(line)               
+        allsequences.write(line)
 queryfile.close()
 print("Query file read")
 
@@ -46,7 +48,6 @@ if  work != 0:
     print("ERROR: PASTA didn't run correctly")
     exit(-1)
 
-
 # run newick-utils
 f = open(distancefile, 'w')
 work = subprocess.call(["nw_distance", "-n", "-m", "m", trefile], stdout=f)
@@ -56,9 +57,10 @@ if  work != 0:
 print("Newick finished")
 f.close()
 
-subprocess.call(["mkdir", "PhylogenyOutput"])
-subprocess.call(["mv", distancefile, "PhylogenyOutput"])
-subprocess.call(["mv", trefile, "PhylogenyOutput"])
+subprocess.call(["mkdir", subject + "_PhylogenyOutput"])
+os.rename(alignedfile, renameAlignfile)
+subprocess.call(["mv", renameAlignfile, subject + "_PhylogenyOutput"])
+subprocess.call(["mv", trefile, subject + "_PhylogenyOutput"])
 
 matrix = open(distancefile, 'r')
 print("Reading matrix file")
@@ -73,23 +75,20 @@ for line in matrix:
     numberLines += 1
     if dis[0] in query :
         found[dis[0]] = dis
-        
+
 matrix.close()
 print("Matrix file read")
-
-distancefolder = queryfilename + "Distance"
-subprocess.call(["mkdir", "distancefolder"])
 
 # create a text file of pairwise distances for each query from the matrix file
 for item in found :
     dict = {}
     for i in range(numberLines):
         dict[seq[i]] = found[item][i]
-    
-    # sort from closest distance to furthest 
+
+    # sort from closest distance to furthest
     sorted_dict = sorted(dict.items(), key=operator.itemgetter(1))
 
-    outfile = item + "phylogeny.txt"
+    outfile = item + "_phylogeny_distance.txt"
     output = open(outfile, 'w')
     output.write("Sequence" + "\t" + "Distance" + "\n")
     for x in sorted_dict:
@@ -97,7 +96,9 @@ for item in found :
         output.write("\n")
     output.close()
     print(outfile + " created")
-    subprocess.call(["mv", outfile, distancefolder])
+    subprocess.call(["mv", outfile, subject + "_PhylogenyOutput"])
+
+print("Final output files located in " + subject + "_PhylogenyOutput")
 
 # remove temporary file
 os.remove("temp.fas")
