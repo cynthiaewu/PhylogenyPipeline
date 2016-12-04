@@ -19,7 +19,7 @@ queryfilename = nameQuery[0]
 trefile = subject + ".tre"
 distancefile = subject + "matrix.txt"
 alignedfile = subject + "_temp_iteration_2_seq_alignment.txt"
-renameAlignfile = subject + "_aligned.txt"
+renameAlignfile = subject + "_aligned.fas"
 
 allsequences = open("temp.fas", 'w')
 queryfile = open(querySequences, 'r')
