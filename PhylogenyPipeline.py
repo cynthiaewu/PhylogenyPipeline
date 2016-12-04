@@ -1,3 +1,4 @@
+import os
 import sys
 import subprocess
 import operator
@@ -12,7 +13,9 @@ fastafile = sys.argv[1]
 # second command line argument: fasta file of only query sequences
 querySequences = sys.argv[2]
 name = fastafile.rsplit(".", 1)
+nameQuery = querySequences.rsplit(".", 1)
 subject = name[0]
+queryfilename = nameQuery[0]
 trefile = subject + ".tre"
 distancefile = subject + "matrix.txt"
 
@@ -38,7 +41,7 @@ allsequences.close()
 database.close()
 
 # run PASTA
-work = subprocess.call(subprocess.call(["run_pasta.py", "-i", allsequences, "-j", subject]))
+work = subprocess.call(["run_pasta.py", "-i", "temp.fas", "-j", subject])
 if  work != 0:
     print("ERROR: PASTA didn't run correctly")
     exit(-1)
@@ -52,6 +55,10 @@ if  work != 0:
     exit(-1)
 print("Newick finished")
 f.close()
+
+subprocess.call(["mkdir", "PhylogenyOutput"])
+subprocess.call(["mv", distancefile, "PhylogenyOutput"])
+subprocess.call(["mv", trefile, "PhylogenyOutput"])
 
 matrix = open(distancefile, 'r')
 print("Reading matrix file")
@@ -70,6 +77,9 @@ for line in matrix:
 matrix.close()
 print("Matrix file read")
 
+distancefolder = queryfilename + "Distance"
+subprocess.call(["mkdir", "distancefolder"])
+
 # create a text file of pairwise distances for each query from the matrix file
 for item in found :
     dict = {}
@@ -87,3 +97,7 @@ for item in found :
         output.write("\n")
     output.close()
     print(outfile + " created")
+    subprocess.call(["mv", outfile, distancefolder])
+
+# remove temporary file
+os.remove("temp.fas")
