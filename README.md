@@ -50,7 +50,7 @@ To test the phylogeny pipeline
 1. Cd into the folder with the TestData.fas and TestQuery.fas
 2. From command line, run this command:
 
-	python PhylogenyPipeline.py TestData.fas TestQuery.fas
+	>python PhylogenyPipeline.py TestData_Avian_Swine_Human_flu.fas TestQuery_Flu.fas
 
 To run the phylogeny pipeline in the command line: 
 
