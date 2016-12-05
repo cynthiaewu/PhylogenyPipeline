@@ -82,6 +82,10 @@ Each query sequence will produce its own distance text file.
 
 OPTION: Maximum likelihood tree can be viewed in Figtree
 (http://tree.bio.ed.ac.uk/software/figtree/) or other software.
+Alignments can be viewed in text editor programs or applications such as Seaview
+(http://doua.prabi.fr/software/seaview).
 
 The PASTA step of this program will also produce many temporary and other files,
-but our program focuses on the output files in the PhylogenyOutput folder.
+which are detailed in the PASTA tutorial (https://github.com/smirarab/pasta/blob/master/pasta-doc/pasta-tutorial.md),
+but for the purposes of our phylogeny pipeline, we focus on the output files placed
+into the PhylogenyOutput folder.
