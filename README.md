@@ -18,7 +18,7 @@ Download the following two tools, preferably in the PATH variable
 (or alternatively in the folder containing the query files to be run):
 
 PASTA (Practical Alignment using Sate and TrAnsitivity) -- 
-Follow the installation instructions [here](https://github.com/smirarab/pasta)
+Follow the installation instructions [here](https://github.com/smirarab/pasta).
 This tool with create a more accurate sequence alignment and maximum likelihood
 tree after several iterations.
 
@@ -83,6 +83,6 @@ Alignments can be viewed in text editor programs or applications such as [Seavie
 or [BioEdit](http://www.mbio.ncsu.edu/bioedit/bioedit.html)
 
 The PASTA step of this program will also produce many temporary and other files,
-which are detailed in the PASTA tutorial (https://github.com/smirarab/pasta/blob/master/pasta-doc/pasta-tutorial.md),
+which are detailed in the [PASTA tutorial](https://github.com/smirarab/pasta/blob/master/pasta-doc/pasta-tutorial.md),
 but for the purposes of our phylogeny pipeline, we focus on the output files placed
 into the PhylogenyOutput folder.
