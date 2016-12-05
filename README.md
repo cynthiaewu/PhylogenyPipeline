@@ -47,8 +47,8 @@ EXECUTION
 
 Running a test job: to test the phylogeny pipeline using the command line,
 
-1. Cd into the folder with the desired test fasta files, HIV_subtype_env or Flu
-2. From command line, run this command:
+1. Cd into the folder with the desired test fasta files, HIV_subtype_env_gene or Flu
+2. From command line, run one of the following commands, depending on the chosen test dataset:
 
 ```
 python PhylogenyPipeline.py HIV_env.fas HIV_env_query.fas
