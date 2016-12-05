@@ -36,6 +36,7 @@ for line in queryfile:
 queryfile.close()
 print("Query file read")
 
+allsequences.write("\n")
 database = open(fastafile, "r")
 for line in database :
     allsequences.write(line)
