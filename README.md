@@ -47,11 +47,14 @@ EXECUTION
 
 Running a test job: to test the phylogeny pipeline using the command line,
 
-1. Cd into the folder with the TestData.fas and TestQuery.fas
+1. Cd into the folder with the desired test fasta files, HIV_subtype_env or Flu
 2. From command line, run this command:
 
+```
+python PhylogenyPipeline.py HIV_env.fas HIV_env_query.fas
+```
  ```
- python PhylogenyPipeline.py TestData_Avian_Swine_Human_flu.fas TestQuery_Flu.fas 
+ python PhylogenyPipeline.py Avian_Swine_Human_flu.fas Flu_query.fas 
  ```
 If the phylogeny pipeline runs successfully, it will produce all of the output files
 listed in the next section.
